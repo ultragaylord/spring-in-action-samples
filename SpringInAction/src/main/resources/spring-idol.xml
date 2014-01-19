@@ -15,5 +15,5 @@
 </bean>
 
 <bean id="theStage" class="com.nijiiro.ufo.springidol.Stage" 
-factory-method="getInstance" />
+	factory-method="getInstance" />
 </beans>

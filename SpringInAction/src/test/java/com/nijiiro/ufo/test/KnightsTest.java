@@ -28,7 +28,9 @@ public class KnightsTest {
 		DamselRescuingKnight knight = new DamselRescuingKnight();
 		knight.embarkOnQuest();
 	}
-	
+	/**
+	 * Tests using mockito and verify the method call.
+	 */
 	@Test
 	public void testBraveKnight(){
 		Quest mockQuest = mock(Quest.class);
@@ -39,6 +41,9 @@ public class KnightsTest {
 		
 	}
 	
+	/**
+	 * Demos a basic AOP.
+	 */
 	@SuppressWarnings("resource")
 	@Test
 	public void testDIForBraveknight(){
