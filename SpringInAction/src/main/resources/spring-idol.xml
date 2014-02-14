@@ -16,4 +16,8 @@
 
 <bean id="theStage" class="com.nijiiro.ufo.springidol.Stage" 
 	factory-method="getInstance" />
+
+<bean id="singletonTicket" class="com.nijiiro.ufo.springidol.Ticket" />
+<bean id="uniqueTicket" class="com.nijiiro.ufo.springidol.Ticket" scope="prototype" />
+	
 </beans>
