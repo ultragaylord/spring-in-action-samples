@@ -1,7 +1,7 @@
 package com.nijiiro.ufo.springidol;
 
 /**
- * A Singleton class which provides a single Stage instance.
+ * Demonstrates Singleton class which provides a single Stage instance.
  * @author gvargas.local
  *
  */
@@ -15,7 +15,7 @@ public class Stage {
 	private Stage(){
 		//just set a sample distinction for each instance.
 		setRandomNumber(Math.random());
-		System.out.println("You're in a single stage... ");
+		System.out.println("Stage : You're in a single stage... ");
 		
 	}
 	

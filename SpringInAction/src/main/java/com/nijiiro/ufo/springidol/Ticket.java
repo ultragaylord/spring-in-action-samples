@@ -26,7 +26,7 @@ public class Ticket {
 	private Ticket(){
 		//sets a random number for checking of the bean scoping.
 		setTicketNumber(Math.random());
-		System.out.println("issued ticket : " +getTicketNumber());
+		System.out.println("Ticket: issued ticket : " +getTicketNumber());
 	}
 	
 }

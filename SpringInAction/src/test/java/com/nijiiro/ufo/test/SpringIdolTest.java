@@ -9,6 +9,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.nijiiro.ufo.springidol.Auditorium;
+import com.nijiiro.ufo.springidol.Instrument;
+import com.nijiiro.ufo.springidol.Instrumentalist;
 import com.nijiiro.ufo.springidol.Performer;
 import com.nijiiro.ufo.springidol.Stage;
 import com.nijiiro.ufo.springidol.Ticket;
@@ -63,7 +66,6 @@ public class SpringIdolTest {
 	 * If bean scope is default (singleton)
 	 * myTicket will be same as yourTicket.
 	 * 
-	 * 
 	 */
 	@Test
 	public void protoTypeTest(){
@@ -90,6 +92,40 @@ public class SpringIdolTest {
 		
 	}
 	
+	/**
+	 * Test for the init-method and destroy-method definition in
+	 * spring bean configuration.
+	 */
+	@Test
+	public void auditoriumTest(){
+		Auditorium auditorium = (Auditorium) context.getBean("auditorium");
+		assertNotNull(auditorium);
+		//close the context for the destroy-method to be called.
+		//use the impl ClassPathXmlApplicationContext instead of the interface ApplicationContext.
+		//just to demonstrate the destroy-method.
+		((ClassPathXmlApplicationContext) context).close();
+	}
 	
-	
+	/**
+	 * Demonstrates the setter injection.
+	 * Injects {@link Instrument} into {@link Instrumentalist} via setter injection
+	 * define as property in spring configuration.
+	 */
+	@Test
+	public void instrumentalistTest(){
+		//Demonstrates the setter injection by value and reference in spring configuration.
+		Instrumentalist kenny = (Instrumentalist) context.getBean("kenny");
+		kenny.perform();
+		
+		/* 	Demonstrates the flexibility of coding by interfaces.
+			note that we are still using the same class but different behavior.
+			we can inject any Instrument which implements it.
+		*/
+		Instrumentalist kennyThePianist = (Instrumentalist) context.getBean("kennyThePianist");
+		kennyThePianist.perform();
+		
+		//using namespace 'p' there is no notable difference. <property> and p namespace work equally well.
+		Instrumentalist kennySax = (Instrumentalist) context.getBean("kennySax");
+		kennySax.perform();
+	}
 }

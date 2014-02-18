@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <bean id="duke" class="com.nijiiro.ufo.springidol.Juggler">
@@ -14,10 +15,47 @@
 	<constructor-arg  ref="sonnet29"/>
 </bean>
 
-<bean id="theStage" class="com.nijiiro.ufo.springidol.Stage" 
+<bean id="innerBeanSample" class="com.nijiiro.ufo.springidol.PoeticJuggler">
+	<constructor-arg value="15"/>
+	<constructor-arg>
+		<!--
+		example of inner bean, compared to poeticDuke this poem  
+		is defined using inner bean. Drawback is that, this bean cannot be re-used.
+		-->  
+		<bean class="com.nijiiro.ufo.springidol.Sonnet29"/>
+	</constructor-arg>
+</bean>
+
+<bean id="theStage" 
+	class="com.nijiiro.ufo.springidol.Stage" 
 	factory-method="getInstance" />
 
-<bean id="singletonTicket" class="com.nijiiro.ufo.springidol.Ticket" />
-<bean id="uniqueTicket" class="com.nijiiro.ufo.springidol.Ticket" scope="prototype" />
-	
+<bean id="singletonTicket" 
+	class="com.nijiiro.ufo.springidol.Ticket" />
+
+<bean id="uniqueTicket" 
+	class="com.nijiiro.ufo.springidol.Ticket" scope="prototype" />
+
+<bean id="auditorium" 
+	class="com.nijiiro.ufo.springidol.Auditorium"
+	init-method="turnOnLights" destroy-method="turnOffLights"/>
+
+<bean id="kenny" class="com.nijiiro.ufo.springidol.Instrumentalist">
+	<property name="song" value="Jingle Bells" />
+	<property name="instrument" ref="saxophone"></property>
+</bean>
+<bean id="saxophone" class="com.nijiiro.ufo.springidol.Saxophone"/>
+
+<bean id="kennyThePianist" class="com.nijiiro.ufo.springidol.Instrumentalist">
+	<property name="song" value="Pachelbel's Canon in D Major" />
+	<property name="instrument" ref="piano"></property>
+</bean>
+
+<bean id="piano" class="com.nijiiro.ufo.springidol.Piano"/>
+
+<!--Example of usage of property namespace 'p' -->
+<bean id="kennySax" class="com.nijiiro.ufo.springidol.Instrumentalist" 
+	p:song="Ave Maria" 
+	p:instrument-ref="saxophone"/>
+
 </beans>

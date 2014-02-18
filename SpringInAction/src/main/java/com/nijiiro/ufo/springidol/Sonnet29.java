@@ -1,5 +1,11 @@
 package com.nijiiro.ufo.springidol;
 
+/**
+ * Implementation class for {@link Poem} interface.
+ * Demonstrate the constructor-arg using reference.
+ * @author gvargas.local
+ *
+ */
 public class Sonnet29 implements Poem {
 	
 	private static String [] LINES={
